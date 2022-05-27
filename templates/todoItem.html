@@ -7,9 +7,32 @@
     <meta http-equiv="X-UA-Compatible"
         content="ie=edge">
     <title>Todo Items</title>
+    <script type = "text/javascript" src="/static/appUtils.js"></script>
 </head>
 <body>
-
-
+<div align="center">
+    <table border="1" cellpadding="5">
+        <caption><h2>View Todo Items</h2> <a href="/items">Back</a></caption>
+            <tr>
+                <td><label>Id</label></td>
+                <td><label>{{todoItem.id_}}</label></td>
+            </tr>
+            <tr>
+                <td><label>Title</label></td>
+                <td><label>{{todoItem.title}}</label></td>
+            </tr>
+            <tr>
+                <td><label>Details</label></td>
+                <td><label>{{todoItem.description}}</label></td>
+            </tr>
+            <tr>
+                <td><label>DeadLine</label></td>
+                <td><label>{{todoItem.deadLine}}</label></td>
+            </tr>
+    </table>
+    <br>
+    <button onclick="redirectUrl('/items/add-update/{{todoItem.id_}}')">Edit</button>
+    <button onclick="delete_item({{todoItem.id_}})">Delete</button>
+</div>
 </body>
 </html>

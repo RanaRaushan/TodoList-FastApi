@@ -27,21 +27,26 @@ def show_todo_items(request: Request):
     return templates.TemplateResponse("showTodoItems.html", context={"request": request, "items": todo_data.items})
 
 
-@app.post(path="/items/add", status_code=status.HTTP_201_CREATED, response_model=TodoItem)
+@app.post(path="/items/add-update", status_code=status.HTTP_201_CREATED, response_model=TodoItem)
 async def add_todo_items(request: Request, item: TodoItem):
-    print(item)
-    todo_data.addItem(TodoItem(title=item.title, description=item.description,
-                               deadLine=item.deadLine))
+    todo_data.addItem(TodoItem(title=item.title, description=item.description, deadLine=item.deadLine))
 
 
-@app.get(path="/items/add", status_code=status.HTTP_200_OK)
+@app.get(path="/items/add-update", status_code=status.HTTP_200_OK)
 def add_todo_items(request: Request):
-    return templates.TemplateResponse("addTodoItem.html", context={"request": request, "id": id(id)})
+    return templates.TemplateResponse("addTodoItem.html", context={"request": request, "todoItem": None})
+
+
+@app.get(path="/items/add-update/{todoId}", status_code=status.HTTP_200_OK)
+def add_todo_items(request: Request, todoId: int):
+    item = todo_data.getItem(todoId)
+    return templates.TemplateResponse("addTodoItem.html", context={"request": request, "todoItem": item})
 
 
 @app.get(path="/items/{todoId}", status_code=status.HTTP_200_OK)
-def getItem(request: Request):
-    return templates.TemplateResponse("todoItem.html", context={"request": request, "id": id(id)})
+def getItem(request: Request, todoId: int):
+    item = todo_data.getItem(todoId)
+    return templates.TemplateResponse("todoItem.html", context={"request": request, "todoItem": item})
 
 
 @app.delete(path="/items/{todoId}", status_code=status.HTTP_202_ACCEPTED)
@@ -50,6 +55,6 @@ def deleteItem(request: Request, todoId: int):
 
 
 @app.patch(path="/items/{todoId}")
-def updateItem(request: Request, item: TodoItem):# word: str = Form(...),
+def updateItem(request: Request, item: TodoItem):
     todo_data.updateItem(item)
 

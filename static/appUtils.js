@@ -8,6 +8,10 @@ function delete_item(id){
         })
 }
 
+function view_item(id){
+    window.location = "/items/"+id
+}
+
 function add_item(){
     const todoForm = document.getElementById("todoAdd");
     const formData = new FormData(todoForm);
@@ -24,7 +28,7 @@ function add_item(){
             },
             body: jsonData
         }
-    fetch("/items/add", options)
+    fetch("/items/add-update", options)
     .then(function (response){
     if (response.status == 201) {
         window.location = "/items"
@@ -32,26 +36,30 @@ function add_item(){
     })
 }
 
-function update_item(){
+function update_item(id){
     const todoForm = document.getElementById("todoAdd");
     const formData = new FormData(todoForm);
-    const data = new URLSearchParams();
-    for (const pair of formData) {
-        data.append(pair[0], pair[1]);
-    }
-    alert("data="+ data)
+    var object = {};
+    formData.forEach(function(value, key){
+        object[key] = value;
+    });
+    var jsonData = JSON.stringify(object);
     let options = {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
                 'Content-Type':
-                    'application/x-www-form-urlencoded; charset=UTF-8'
+                    'application/json'
             },
-            body: data
+            body: jsonData
         }
-    fetch("/items/add", options)
+    fetch("/items/"+id, options)
     .then(function (response){
-    if (response.status == 201) {
+    if (response.status == 200) {
         window.location = "/items"
         }
     })
+}
+
+function redirectUrl(url){
+    window.location = url
 }
