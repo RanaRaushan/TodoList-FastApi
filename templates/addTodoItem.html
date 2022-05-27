@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+        content="ie=edge">
+    <title>Add Items</title>
+    <script type = "text/javascript" src="/static/appUtils.js"></script>
+</head>
+<body>
+<div align="center">
+    <form id="todoAdd" name="todoAdd">
+        <table>
+        <caption><h2>Todo Items</h2></caption>
+            <tr>
+                <td><label>ID</label></td>
+                <td>
+                    <input name="id" disabled />
+                </td>
+            </tr>
+            <tr>
+                <td><label>Title</label></td>
+                <td><input id="title" name="title"/></td>
+            </tr>
+            <tr>
+                <td><label>Deadline</label></td>
+                <td><input id="deadLine" name="deadLine"/></td>
+            </tr>
+            <tr>
+                <td><label>Details</label></td>
+                <td><textarea id="description" name="description"></textarea></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="add_item()">Add</button></td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+</body>
+</html>
