@@ -1,10 +1,6 @@
-import datetime
-from typing import Any
-
-from fastapi import FastAPI, Request, Depends, Form
+from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from starlette import status
-from starlette.responses import RedirectResponse
 from starlette.staticfiles import StaticFiles
 
 from todo.todoData import TodoData
@@ -24,11 +20,11 @@ def home_page(request: Request):
 
 @app.get(path="/items", status_code=status.HTTP_200_OK)
 def show_todo_items(request: Request):
-    return templates.TemplateResponse("showTodoItems.html", context={"request": request, "items": todo_data.items})
+    return templates.TemplateResponse("showTodoItems.html", context={"request": request, "items": todo_data.getItems()})
 
 
 @app.post(path="/items/add-update", status_code=status.HTTP_201_CREATED, response_model=TodoItem)
-async def add_todo_items(request: Request, item: TodoItem):
+async def add_todo_items(item: TodoItem):
     todo_data.addItem(TodoItem(title=item.title, description=item.description, deadLine=item.deadLine))
 
 
@@ -50,11 +46,11 @@ def getItem(request: Request, todoId: int):
 
 
 @app.delete(path="/items/{todoId}", status_code=status.HTTP_202_ACCEPTED)
-def deleteItem(request: Request, todoId: int):
+def deleteItem(todoId: int):
     todo_data.removeItem(todoId)
 
 
-@app.patch(path="/items/{todoId}")
-def updateItem(request: Request, todoId: int, item: TodoItem):
+@app.patch(path="/items/{todoId}", response_model=TodoItem)
+def updateItem(todoId: int, item: TodoItem):
     todo_data.updateItem(todoId, item)
 

@@ -15,7 +15,7 @@ class TodoData:
         self.addItem(TodoItem(title="5th", description="5th desc", deadLine=datetime.date.today()))
 
     def getItems(self):
-        return tuple(self.items.dataList)
+        return tuple(self.items)
 
     def addItem(self, item: TodoItem):
         item.id_ = self.id_

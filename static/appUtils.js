@@ -37,7 +37,6 @@ function add_item(){
 }
 
 function update_item(id){
-    alert("id= "+ id)
     const todoForm = document.getElementById("todoAdd");
     const formData = new FormData(todoForm);
     var object = {};
