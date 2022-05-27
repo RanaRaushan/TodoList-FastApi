@@ -55,6 +55,6 @@ def deleteItem(request: Request, todoId: int):
 
 
 @app.patch(path="/items/{todoId}")
-def updateItem(request: Request, item: TodoItem):
-    todo_data.updateItem(item)
+def updateItem(request: Request, todoId: int, item: TodoItem):
+    todo_data.updateItem(todoId, item)
 

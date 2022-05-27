@@ -29,8 +29,13 @@ class TodoData:
         else:
             raise ValueError("Item doesn't exist")
 
-    def updateItem(self, item: TodoItem):
-        pass
+    def updateItem(self, todoId: int, updatedItem: TodoItem):
+        for index in range(len(self.items)):
+            if self.items[index].id_ == todoId:
+                updatedItem.id_ = todoId
+                self.items[index] = updatedItem
+                break
+        return None
 
     def getItem(self, itemId: int):
         for item in self.items:
