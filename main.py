@@ -4,14 +4,13 @@ from starlette import status
 from starlette.staticfiles import StaticFiles
 
 from todo.core.database import create_db_and_tables
-from todo.todoData import TodoData, get_todo_manager, TodoDataService
+from todo.todoData import get_todo_manager, TodoDataService
 from todo.core.schemas.todoItem import TodoItem
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
-todo_data = TodoData()
 
 
 @app.on_event("startup")
