@@ -17,7 +17,7 @@
             <tr>
                 <td><label>ID</label></td>
                 <td>
-                    <input name="id" value="{{todoItem.id_}}" disabled />
+                    <input name="id" value="{{todoItem.id}}" disabled />
                 </td>
             </tr>
             <tr>
@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td><button type="button" onclick="redirectUrl('/items')">Back</button></td>
-                <td><button type="button" onclick="{% if todoItem.id_ %} update_item({{todoItem.id_}}) {% else %} add_item() {% endif %}">{% if todoItem.id_ %} Save {% else %} Add {% endif %}</button></td>
+                <td><button type="button" onclick="{% if todoItem.id %} update_item({{todoItem.id}}) {% else %} add_item() {% endif %}">{% if todoItem.id %} Save {% else %} Add {% endif %}</button></td>
             </tr>
         </table>
     </form>

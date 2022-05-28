@@ -15,7 +15,7 @@
         <caption><h2>View Todo Items</h2> <a href="/items">Back</a></caption>
             <tr>
                 <td><label>Id</label></td>
-                <td><label>{{todoItem.id_}}</label></td>
+                <td><label>{{todoItem.id}}</label></td>
             </tr>
             <tr>
                 <td><label>Title</label></td>
@@ -31,8 +31,8 @@
             </tr>
     </table>
     <br>
-    <button onclick="redirectUrl('/items/add-update/{{todoItem.id_}}')">Edit</button>
-    <button onclick="delete_item({{todoItem.id_}})">Delete</button>
+    <button onclick="redirectUrl('/items/add-update/{{todoItem.id}}')">Edit</button>
+    <button onclick="delete_item({{todoItem.id}})">Delete</button>
 </div>
 </body>
 </html>

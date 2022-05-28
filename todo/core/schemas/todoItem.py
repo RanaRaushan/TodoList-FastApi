@@ -3,12 +3,20 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
+from todo.core.models.model import TodoListTable
+
 
 class TodoItem(BaseModel):
-    id_: Optional[int]
+    id: Optional[int]
     title: str
     description: str
     deadLine: datetime.date
+    created: datetime.date = datetime.datetime.utcnow()
+    modified: datetime.date = datetime.datetime.utcnow()
+    active: bool = True
+
+    class Config:
+        orm_mode = True
 
 
 class TodoItemList:
@@ -37,3 +45,9 @@ class TodoItemList:
 
     def remove(self, v):
         self.dataList.remove(v)
+
+    def from_orm_list(self, results: List[TodoListTable]):
+        temp = []
+        for result in results:
+            temp.append(TodoItem.from_orm(result))
+        self.dataList = temp

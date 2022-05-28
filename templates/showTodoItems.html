@@ -24,17 +24,17 @@
         </tr>
         {% for item in items %}
         <tr>
-            <td>{{ item.id_ }}</td>
+            <td>{{ item.id }}</td>
             <td>{{ item.title }}</td>
             <td>{{ item.deadLine }}</td>
             <td class="text-right">
-                <button type="submit" onclick="redirectUrl('/items/add-update/{{item.id_}}')">Edit</button>
+                <button type="submit" onclick="redirectUrl('/items/add-update/{{item.id}}')">Edit</button>
             </td>
             <td class="text-right">
-                <button type="submit" onclick="view_item({{item.id_}})">View</button>
+                <button type="submit" onclick="view_item({{item.id}})">View</button>
             </td>
             <td class="text-right">
-                <button type="submit" onclick="delete_item({{item.id_}})">Delete</button>
+                <button type="submit" onclick="delete_item({{item.id}})">Delete</button>
             </td>
         </tr>
         {% endfor %}
